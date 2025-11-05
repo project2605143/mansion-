@@ -1,218 +1,731 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mansion Homes</title>
-  <style>
-    :root {
-      --orange: #FF6B35;
-      --dark-orange: #E55A2B;
-      --black: #1a1a1a;
-      --light-black: #2d2d2d;
-      --white: #ffffff;
-      --light-gray: #f5f5f5;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mansion Homes - Premium Homestays</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--white);
-      color: var(--black);
-    }
+        :root {
+            --orange: #FF6B35;
+            --dark-orange: #E55A2B;
+            --black: #1a1a1a;
+            --light-black: #2d2d2d;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+        }
 
-    header {
-      background: var(--black);
-      color: var(--white);
-      padding: 1.5rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background: var(--white);
+        }
 
-    header h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-    }
+        /* Navigation */
+        .navbar {
+            background: var(--black);
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
 
-    header h1 span {
-      color: var(--orange);
-    }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    nav a {
-      color: var(--white);
-      margin-left: 2rem;
-      text-decoration: none;
-      font-weight: 500;
-    }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -1px;
+        }
 
-    nav a:hover {
-      color: var(--orange);
-    }
+        .logo span {
+            color: var(--orange);
+        }
 
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      padding: 4rem 2rem;
-      background: linear-gradient(135deg, var(--black), var(--light-black));
-      color: var(--white);
-    }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
 
-    .hero h2 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
 
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      color: rgba(255,255,255,0.8);
-    }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--orange);
+            transition: width 0.3s ease;
+        }
 
-    .hero img {
-      width: 100%;
-      border-radius: 15px;
-    }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-    .section {
-      padding: 4rem 2rem;
-    }
+        .nav-links a:hover {
+            color: var(--orange);
+        }
 
-    .section h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      color: var(--black);
-    }
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            background: linear-gradient(135deg, var(--black) 0%, var(--light-black) 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect fill="%23FF6B35" opacity="0.03" width="100" height="100"/><circle cx="50" cy="50" r="30" fill="%23FF6B35" opacity="0.05"/></svg>');
+            background-size: 100px 100px;
+        }
 
-    .card {
-      background: var(--light-gray);
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
 
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
+        .hero-content h1 {
+            font-size: 4rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            font-weight: 800;
+        }
 
-    .card-content {
-      padding: 1.5rem;
-    }
+        .hero-content h1 span {
+            color: var(--orange);
+        }
 
-    .card-content h3 {
-      margin: 0 0 1rem;
-      color: var(--orange);
-    }
+        .hero-content p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
 
-    .card-content p {
-      color: #555;
-    }
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
 
-    .contact {
-      background: var(--black);
-      color: var(--white);
-      padding: 4rem 2rem;
-      text-align: center;
-    }
+        .btn-primary {
+            background: var(--orange);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
 
-    .contact h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: var(--orange);
-    }
+        .btn-primary:hover {
+            background: var(--dark-orange);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255,107,53,0.3);
+        }
 
-    .contact p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      color: rgba(255,255,255,0.7);
-    }
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--white);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
 
-    .contact a {
-      display: inline-block;
-      margin: 0.5rem;
-      padding: 0.8rem 1.5rem;
-      background: var(--orange);
-      color: var(--white);
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-    }
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--black);
+        }
 
-    footer {
-      background: #0a0a0a;
-      color: rgba(255,255,255,0.6);
-      text-align: center;
-      padding: 2rem;
-    }
-  </style>
+        .hero-image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            height: 500px;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-img:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-img:first-child {
+            grid-row: 1 / 3;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 6rem 0;
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            color: var(--orange);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: var(--black);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            height: 400px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 2rem;
+            transform: translateY(60%);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        .portfolio-title {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-description {
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2.5rem;
+            border-radius: 20px;
+            background: var(--light-gray);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            border-color: var(--orange);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255,107,53,0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .feature-text {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+            align-items: center;
+        }
+
+        .contact-info h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--orange);
+        }
+
+        .contact-info p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .contact-cards {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .contact-card {
+            background: var(--light-black);
+            padding: 2rem;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .contact-card:hover {
+            border-color: var(--orange);
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--orange);
+        }
+
+        .contact-details a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-details a:hover {
+            color: var(--orange);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a0a0a;
+            color: rgba(255,255,255,0.6);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 0.5rem 0;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            color: var(--white);
+            font-size: 50px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--orange);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Mansion<span>Homes</span></h1>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#properties">Properties</a>
-      <a href="#contact">Contact</a>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Mansion<span>Homes</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#portfolio">Properties</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </nav>
-  </header>
 
-  <section class="hero" id="home">
-    <div>
-      <h2>Luxury Homestays</h2>
-      <p>Experience comfort and elegance in our curated collection of premium properties.</p>
-      <a href="#properties" style="background: var(--orange); padding: 1rem 2rem; border-radius: 50px; color: var(--white); text-decoration: none;">Explore Now</a>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Your Perfect <span>Home</span> Away From Home</h1>
+                <p>Experience luxury and comfort in our premium homestays. Each property is carefully curated to provide you with an unforgettable stay.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn-primary">Book Now</a>
+                    <a href="#portfolio" class="btn-secondary">View Properties</a>
+                </div>
+            </div>
+            <div class="hero-image-grid">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='500'%3E%3Crect fill='%23FF6B35' width='400' height='500'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='white' text-anchor='middle' dominant-baseline='middle'%3ELiving Room%3C/text%3E%3C/svg%3E" alt="Living Room" class="hero-img">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231a1a1a' width='400' height='250'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='white' text-anchor='middle' dominant-baseline='middle'%3EBedroom%3C/text%3E%3C/svg%3E" alt="Bedroom" class="hero-img">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%232d2d2d' width='400' height='250'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='white' text-anchor='middle' dominant-baseline='middle'%3ECommon Area%3C/text%3E%3C/svg%3E" alt="Common Area" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Our Properties</div>
+                <h2 class="section-title">Explore Our Collection</h2>
+                <p class="section-description">Discover our carefully selected properties, each offering unique comfort and style</p>
+            </div>
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- Portfolio items will be added by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">What We Offer</div>
+                <h2 class="section-title">Premium Amenities</h2>
+                <p class="section-description">Every property comes equipped with modern facilities for your comfort</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🛏️</div>
+                    <h3 class="feature-title">Comfortable Beds</h3>
+                    <p class="feature-text">Premium mattresses and quality linens for a restful sleep</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">❄️</div>
+                    <h3 class="feature-title">Air Conditioning</h3>
+                    <p class="feature-text">Stay cool with modern AC units in every room</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚿</div>
+                    <h3 class="feature-title">Modern Bathrooms</h3>
+                    <p class="feature-text">Clean, hygienic facilities with hot water available 24/7</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📺</div>
+                    <h3 class="feature-title">Entertainment</h3>
+                    <p class="feature-text">Spacious living areas perfect for relaxation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag" style="color: var(--orange);">Get In Touch</div>
+                <h2 class="section-title" style="color: var(--white);">Ready to Book?</h2>
+                <p class="section-description" style="color: rgba(255,255,255,0.7);">Contact us today to reserve your perfect stay</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <p>We're here to help you find the perfect homestay. Reach out through any of our contact channels.</p>
+                    <a href="#portfolio" class="btn-primary">View All Properties</a>
+                </div>
+                <div class="contact-cards">
+                    <div class="contact-card">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h4>Primary Contact</h4>
+                            <a href="tel:9791956595">979-195-6595</a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-details">
+                            <h4>WhatsApp</h4>
+                            <a href="tel:6383770095">638-377-0095</a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">☎️</div>
+                        <div class="contact-details">
+                            <h4>Alternative Line</h4>
+                            <a href="tel:9940935591">994-093-5591</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Mansion Homes. All Rights Reserved.</p>
+            <p>Your comfort is our priority</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="imageModal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage" alt="Property Image">
     </div>
-    <img src="/uploads/image4.png" alt="Living Room" />
-  </section>
 
-  <section class="section" id="properties">
-    <h2>Featured Properties</h2>
-    <div class="grid">
-      <div class="card">
-        <img src="/uploads/image1.png" alt="Bathroom" />
-        <div class="card-content">
-          <h3>Modern Bathroom</h3>
-          <p>Clean, hygienic facilities with premium fixtures and 24/7 hot water.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="/uploads/image2.png" alt="Bedroom" />
-        <div class="card-content">
-          <h3>Comfortable Bedroom</h3>
-          <p>Well-ventilated rooms with AC and quality bedding for restful sleep.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="/uploads/image3.png" alt="Master Bedroom" />
-        <div class="card-content">
-          <h3>Master Bedroom</h3>
-          <p>Spacious and elegant with all modern amenities for a luxurious stay.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    <script>
+        // Base path for images - update with your actual path
+        const basePath = './uploads/';
+        
+        const properties = [
+            {
+                title: "Cozy Living Room",
+                description: "Modern furnishings with comfortable seating arrangements",
+                image: basePath + "image4.png"
+            },
+            {
+                title: "Modern Bathroom",
+                description: "Clean, hygienic facilities with premium fixtures",
+                image: basePath + "image1.png"
+            },
+            {
+                title: "Comfortable Bedroom",
+                description: "Well-ventilated rooms with AC and quality bedding",
+                image: basePath + "image2.png"
+            },
+            {
+                title: "Master Bedroom",
+                description: "Spacious bedroom with all modern amenities",
+                image: basePath + "image3.png"
+            }
+        ];
 
-  <section class="contact" id="contact">
-    <h2>Get in Touch</h2>
-    <p>Ready to book your stay? Reach out to us today.</p>
-    <a href="tel:9791956595">Call: 979-195-6595</a>
-    <a href="tel:6383770095">WhatsApp: 638-377-0095</a>
-    <a href="tel:9940935591">Alt Line: 994-093-5591</a>
-  </section>
+        const portfolioGrid = document.getElementById('portfolioGrid');
+        
+        properties.forEach(property => {
+            const item = document.createElement('div');
+            item.className = 'portfolio-item';
+            item.innerHTML = `
+                <img src="${property.image}" alt="${property.title}" onclick="openModal('${property.image}')">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">${property.title}</h3>
+                    <p class="portfolio-description">${property.description}</p>
+                </div>
+            `;
+            portfolioGrid.appendChild(item);
+        });
 
-  <footer>
-    <p>&copy; 2025 Mansion Homes. All rights reserved.</p>
-    <p>Your comfort is our priority</p>
-  </footer>
+        function openModal(src) {
+            document.getElementById('imageModal').classList.add('active');
+            document.getElementById('modalImage').src = src;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').classList.remove('active');
+        }
+
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
